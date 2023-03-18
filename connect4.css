@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #00031b;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    color: aqua;
+}
+
+#title{
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    color: aqua;
+    font-size: 40px;
+}
+
+#redScore{
+    color: red;
+}
+
+#yellowScore{
+    color: yellow;
+}
+
+#winner{
+    text-shadow: 2px 2px rgb(0, 0, 0);
+    font-size: 30px;
+}
+
+#restart{
+    font-size: 40px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+}
+
+#restart:hover{
+    background-color: #3b3b3b;
+}
+
+#board {
+    height: 540px;
+    width: 630px;
+    background-color: blue;
+    border: 10px solid navy;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+
+    background-color: #00031b;
+    border-radius: 50%;
+    border: 5px solid navy;
+}
+
+.red-piece {
+    background: linear-gradient(to right, red 0%, rgb(136, 0, 0) 50%, red 100%);
+    background-size: 1000px 100%;
+    animation: shining 2s infinite;
+}
+
+.yellow-piece {
+    background: linear-gradient(to right, yellow 0%, rgb(185, 185, 0) 50%, yellow 100%);
+    background-size: 1000px 100%;
+    animation: shining 2s infinite;
+}
+
+@keyframes shining {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+}
