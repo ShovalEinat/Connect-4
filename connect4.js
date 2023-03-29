@@ -1,6 +1,6 @@
 var playerRed = "R";
 var playerYellow = "Y";
-var currPlayer = Math.random() < 0.5 ? playerRed : playerYellow;
+var currPlayer = playerRed;
 let yellowScore = 0;
 let redScore = 0;
 let yellowScoreSpan = document.getElementById("yellowScore");
@@ -20,23 +20,18 @@ window.onload = function() {
 function resetGame() {
     restart.innerHTML = "Restart";
     gameOver = false;
-    currPlayer = Math.random() < 0.5 ? playerRed : playerYellow;
+    currPlayer = playerRed;
     currColumns = [5, 5, 5, 5, 5, 5, 5];
     board = [];
-  
+
     let tiles = document.getElementsByClassName("tile");
     for (let i = 0; i < tiles.length; i++) {
       tiles[i].classList.remove("red-piece", "yellow-piece");
     }
-  
-    if (currPlayer == playerRed) {
-        winner.innerText = "Red Turn";
-        winner.style.color = "red";
-    } else {
-        winner.innerText = "Yellow Turn";
-        winner.style.color = "yellow";
-    }
-  
+
+    winner.innerText = "Red Turn";
+    winner.style.color = "red";
+
     setGame();
 }
 
@@ -63,13 +58,8 @@ function setGame() {
         }
         board.push(row);
     }
-    if (currPlayer == playerRed) {
-        winner.innerText = "Red Turn";
-        winner.style.color = "red";
-    } else {
-        winner.innerText = "Yellow Turn";
-        winner.style.color = "yellow";
-    }
+    winner.innerText = "Red Turn";
+    winner.style.color = "red";
 }
 
 function setPiece() {
