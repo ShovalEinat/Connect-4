@@ -3,9 +3,13 @@ var playerYellow = "Y";
 var currPlayer = playerYellow;
 let yellowScore = 0;
 let redScore = 0;
+let maxRound = 3;
+let round = 0;
 document.getElementById("game").style.display = "none";
 let yellowScoreSpan = document.getElementById("yellowScore");
 let redScoreSpan = document.getElementById("redScore");
+let endGameWinner = document.getElementById("endGameWinner");
+let rounds = document.getElementById("rounds");
 
 var gameOver = false;
 var board;
@@ -33,6 +37,7 @@ function allVisible() {
     yellowScoreSpan.textContent = yellowName + "'s Score: " + yellowScore;
     winner.innerText = yellowName + "'s Turn";
     winner.style.color = "yellow";
+    rounds.innerText = "Round : " + round + "/" + maxRound;
     setGame();
 }
 
@@ -193,22 +198,60 @@ function checkWinner() {
 }
 
 function setWinner(r, c) {
+    round++;
+    setEndWinner();
     let winner = document.getElementById("winner");
-    var audio = new Audio('congratulations.mp3');
-    audio.play();
     if (board[r][c] == playerRed) {
-        winner.innerText = redName + " Wins!";
-        winner.style.color = "red";
+        winner.innerText = redName + " wins this round";
+        winner.style.color = "red"; 
         redScore = redScore + 1;
+        rounds.innerText = "Round : " + round + "/" + maxRound;
         redScoreSpan.textContent = `${document.getElementById("redName").value}'s Score: ${redScore}`;
     } else {
-        winner.innerText = yellowName + " Wins!";
-        winner.style.color = "yellow";     
+        winner.innerText = yellowName + " wins this round";
+        winner.style.color = "yellow";    
         yellowScore = yellowScore + 1;
+        rounds.innerText = "Round : " + round + "/" + maxRound;
         yellowScoreSpan.textContent = `${document.getElementById("yellowName").value}'s Score: ${yellowScore}`;
     }
     gameOver = true;
     const restart = document.getElementById("restart");
 
-    restart.innerHTML = "New Game";
+    restart.innerHTML = "New Round";
 }
+
+function setEndWinner() {
+    setTimeout(function() {
+        if (round == maxRound) {
+            rounds.innerText = "Round : " + round + "/" + maxRound;
+            const changeNames = document.getElementById("changeNames");
+            document.getElementById("winner").style.display = "none";
+            document.getElementById("restart").style.display = "none";
+            changeNames.innerHTML = "New Game";
+            var audio = new Audio('congratulations.mp3');
+            console.log("yellowScore:", yellowScore);
+            console.log("redScore:", redScore);
+            if (yellowScore > redScore) {
+                endGameWinner.innerText = yellowName + " wins this game";
+                endGameWinner.style.color = "yellow";
+                audio.play();
+            }
+            else if (yellowScore === redScore) {
+                endGameWinner.innerText = "Its a draw";
+                endGameWinner.style.color = "orange";
+            }
+            else {
+                endGameWinner.innerText = redName + " wins this game";
+                endGameWinner.style.color = "red"; 
+                audio.play();
+            }        
+        }
+    }, 00001);      
+}
+
+const range = document.getElementById("range");
+const rangeValue = document.getElementById("rangeValue");
+
+range.addEventListener("input", () => {
+    rangeValue.innerHTML = "Maximum amount of rounds: " + range.value;
+});
