@@ -12,17 +12,20 @@
     <h1 id="title">Connect 4</h1>
     
     <div id="nameInputs">
-        <h2>Enter Names</h2>
+        <h2><b>Enter names and the amount of rounds:</b></h2>
         <input  value="Red" placeHolder="Red Name" id="redName" type="text">
         <input  value="Yellow" placeHolder="Yellow Name" id="yellowName" type="text">
-        <br><br><button onClick="checkBoxes()" class="buttons">Start</button>
+        <br><br><input type="range" id="range" min="1" max="10" value="3" onInput="maxRound = this.value">
+        <h2 id="rangeValue">Maximum amount of rounds: 3</h2>
+        <br><button onClick="checkBoxes()" class="buttons">Start</button>
     </div>
     <div id="game">
-        <span id="redScore">Red : 0</span><br><span id="yellowScore">Yellow : 0</span>
+        <span id="rounds">Round : 0</span><br><span id="redScore">Red : 0</span><br><span id="yellowScore">Yellow : 0</span>
+        <h2 id="endGameWinner"></h2>
         <h2 id="winner"></h2>
         <div id="board"></div>
         <br><button id="restart" onClick="resetGame()">Restart</button>
-        <button onClick="refrash()" class="buttons">Change Names</button>
+        <button onClick="refrash()" id="changeNames">Change Settings</button>
         <script src="connect4.js"></script>
     </div>
 </body>
