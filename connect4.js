@@ -1,8 +1,9 @@
 var playerRed = "R";
 var playerYellow = "Y";
-var currPlayer = playerRed;
+var currPlayer = playerYellow;
 let yellowScore = 0;
 let redScore = 0;
+document.getElementById("game").style.display = "none";
 let yellowScoreSpan = document.getElementById("yellowScore");
 let redScoreSpan = document.getElementById("redScore");
 
@@ -13,14 +14,64 @@ var rows = 6;
 var columns = 7;
 var currColumns = [];
 
-window.onload = function() {
+let redName, yellowName;
+
+function checkBoxes() {
+    redName = document.getElementById("redName").value;
+    yellowName = document.getElementById("yellowName").value;
+    if (redName.trim() === "" || yellowName.trim() === "") {
+      alert("Please enter both player names to start the game.");
+      return;
+    }
+    allVisible();
+}
+  
+function allVisible() {
+    document.getElementById("game").style.display = "block";
+    document.getElementById("nameInputs").style.display = "none";
+    redScoreSpan.textContent = redName + "'s Score: " + redScore;
+    yellowScoreSpan.textContent = yellowName + "'s Score: " + yellowScore;
+    winner.innerText = yellowName + "'s Turn";
+    winner.style.color = "yellow";
     setGame();
 }
+
+function refrash() {
+    location.reload();
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.code === "KeyR") {
+        resetGame();
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.code === "KeyB") {
+        refrash();
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.code === "Enter") {
+        checkBoxes();
+    }
+});
+
+let lastPlayer;
 
 function resetGame() {
     restart.innerHTML = "Restart";
     gameOver = false;
-    currPlayer = playerRed;
+
+    if (lastPlayer === playerRed) {
+        currPlayer = playerYellow;
+    } else {
+        currPlayer = playerRed;
+    }
+
+    lastPlayer = currPlayer;
+
     currColumns = [5, 5, 5, 5, 5, 5, 5];
     board = [];
 
@@ -29,8 +80,8 @@ function resetGame() {
       tiles[i].classList.remove("red-piece", "yellow-piece");
     }
 
-    winner.innerText = "Red Turn";
-    winner.style.color = "red";
+    winner.innerText = currPlayer === playerRed ? redName + "'s Turn" : yellowName + "'s Turn";
+    winner.style.color = currPlayer === playerRed ? "red" : "yellow";
 
     setGame();
 }
@@ -58,15 +109,12 @@ function setGame() {
         }
         board.push(row);
     }
-    winner.innerText = "Red Turn";
-    winner.style.color = "red";
 }
 
 function setPiece() {
     if (gameOver) {
         return;
     }
-
     let coords = this.id.split("-");
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
@@ -81,13 +129,13 @@ function setPiece() {
     let tile = document.getElementById(r.toString() + "-" + c.toString());
     if (currPlayer == playerRed) {
         tile.classList.add("red-piece");
-        winner.innerText = "Yellow Turn";
+        winner.innerText = yellowName + "'s Turn";
         winner.style.color = "yellow";
         currPlayer = playerYellow;
     }
     else {
         tile.classList.add("yellow-piece");
-        winner.innerText = "Red Turn";
+        winner.innerText = redName + "'s Turn";
         winner.style.color = "red";
         currPlayer = playerRed;
     }
@@ -149,15 +197,15 @@ function setWinner(r, c) {
     var audio = new Audio('congratulations.mp3');
     audio.play();
     if (board[r][c] == playerRed) {
-        winner.innerText = "Red Wins";
+        winner.innerText = redName + " Wins!";
         winner.style.color = "red";
         redScore = redScore + 1;
-        redScoreSpan.textContent = redScore;                            
+        redScoreSpan.textContent = `${document.getElementById("redName").value}'s Score: ${redScore}`;
     } else {
-        winner.innerText = "Yellow Wins";
+        winner.innerText = yellowName + " Wins!";
         winner.style.color = "yellow";     
         yellowScore = yellowScore + 1;
-        yellowScoreSpan.textContent = yellowScore;                       
+        yellowScoreSpan.textContent = `${document.getElementById("yellowName").value}'s Score: ${yellowScore}`;
     }
     gameOver = true;
     const restart = document.getElementById("restart");
