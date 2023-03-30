@@ -22,12 +22,25 @@ body {
     font-size: 30px;
 }
 
-#winner{
-    text-shadow: 2px 2px rgb(0, 0, 0);
-
+#rounds{
+    color: rgb(0, 255, 55);
+    font-size: 30px;
 }
 
-.buttons{
+#winner, #endGameWinner{
+    text-shadow: 2px 2px rgb(0, 0, 0);
+}
+
+#range::-webkit-slider-runnable-track {
+    background-color: white;
+    border-radius: 5px;
+}
+  
+#range::-webkit-slider-thumb {
+    cursor: pointer;
+}
+
+.buttons, #changeNames{
     font-size: 30px;
     padding: 10px 20px;
     border-radius: 5px;
@@ -37,7 +50,7 @@ body {
     cursor: pointer;
 }
 
-.buttons:hover{
+.buttons:hover, #changeNames:hover{
     background-color: #3b3b3b;
 }
 
