@@ -3,31 +3,46 @@ body {
     text-align: center;
     background-color: #00031b;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 40px;
+    font-size: 20px;
     color: aqua;
 }
 
 #title{
     text-shadow: 2px 2px rgb(0, 0, 0);
     color: aqua;
-    font-size: 40px;
 }
 
 #redScore{
     color: red;
+    font-size: 30px;
 }
 
 #yellowScore{
     color: yellow;
+    font-size: 30px;
 }
 
 #winner{
     text-shadow: 2px 2px rgb(0, 0, 0);
+
+}
+
+.buttons{
     font-size: 30px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttons:hover{
+    background-color: #3b3b3b;
 }
 
 #restart{
-    font-size: 40px;
+    font-size: 30px;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
@@ -80,4 +95,18 @@ body {
     100% {
       background-position: 1000px 0;
     }
+}
+
+#redName{
+    text-align: center;
+    background-color: #00031b;
+    font-size: 40px;
+    color: red;
+}
+
+#yellowName{
+    text-align: center;
+    background-color: #00031b;
+    font-size: 40px;
+    color: yellow;
 }
