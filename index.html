@@ -10,10 +10,20 @@
 </head>
 <body>
     <h1 id="title">Connect 4</h1>
-    <span id="redScore">0</span>:<span id="yellowScore">0</span>
-    <h2 id="winner"></h2>
-    <div id="board"></div>
-    <br><button id="restart" onClick="resetGame()">Restart</button>
-    <script src="connect4.js"></script>
+    
+    <div id="nameInputs">
+        <h2>Enter Names</h2>
+        <input  value="Red" placeHolder="Red Name" id="redName" type="text">
+        <input  value="Yellow" placeHolder="Yellow Name" id="yellowName" type="text">
+        <br><br><button onClick="checkBoxes()" class="buttons">Start</button>
+    </div>
+    <div id="game">
+        <span id="redScore">Red : 0</span><br><span id="yellowScore">Yellow : 0</span>
+        <h2 id="winner"></h2>
+        <div id="board"></div>
+        <br><button id="restart" onClick="resetGame()">Restart</button>
+        <button onClick="refrash()" class="buttons">Change Names</button>
+        <script src="connect4.js"></script>
+    </div>
 </body>
 </html>
