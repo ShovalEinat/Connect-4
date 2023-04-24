@@ -17,7 +17,6 @@ var board;
 var rows = 6;
 var columns = 7;
 var currColumns = [];
-
 let redName, yellowName;
 
 function checkBoxes() {
@@ -224,10 +223,8 @@ function setEndWinner() {
     setTimeout(function() {
         if (round == maxRound) {
             rounds.innerText = "Round : " + round + "/" + maxRound;
-            const changeNames = document.getElementById("changeNames");
             document.getElementById("winner").style.display = "none";
             document.getElementById("restart").style.display = "none";
-            changeNames.innerHTML = "New Game";
             var audio = new Audio('congratulations.mp3');
             console.log("yellowScore:", yellowScore);
             console.log("redScore:", redScore);
