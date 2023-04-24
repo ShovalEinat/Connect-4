@@ -22,6 +22,10 @@ body {
     font-size: 30px;
 }
 
+input:focus {
+    outline: none;
+}
+
 #rounds{
     color: rgb(0, 255, 55);
     font-size: 30px;
@@ -29,6 +33,10 @@ body {
 
 #winner, #endGameWinner{
     text-shadow: 2px 2px rgb(0, 0, 0);
+}
+
+#range{
+    width: 200px;
 }
 
 #range::-webkit-slider-runnable-track {
